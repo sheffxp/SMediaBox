@@ -1,0 +1,227 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme -->
+    <style name="SMediaBox" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
+
+    <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="SMediaBox.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="SMediaBox.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="SMediaBox.NoActionBar">
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SMediaBox.NoActionBar.Dark">
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <item name="android:statusBarColor">@color/mine_shaft</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="SMediaBox.NoActionBar.Dark.GreenBackBtn" parent="SMediaBox.NoActionBar.Dark">
+        <item name="toolbarNavigationButtonStyle">@style/Toolbar.Button.Navigation.Tinted</item>
+    </style>
+
+    <style name="Toolbar.Button.Navigation.Tinted" parent="Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="tint">@color/caribbean_green_tmdb</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/mine_shaft</item>
+        <item name="android:fontFamily">@font/cc_rubik_one</item>
+        <item name="android:textAlignment">center</item>
+        <item name="titleTextColor">@color/mine_shaft</item>
+    </style>
+
+    <style name="DarkToolbarActionButton" parent="SMediaBox">
+        <item name="android:textColorSecondary">#222222</item>
+        <item name="android:homeAsUpIndicator">@drawable/ic_back</item>
+    </style>
+
+    <style name="HeaderMedium">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/mine_shaft</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/cc_montserrat_black</item>
+    </style>
+
+    <style name="HeaderSmall">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/mine_shaft</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/cc_montserrat_semibold</item>
+    </style>
+
+    <style name="RegularText">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/mine_shaft</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/cc_montserrat_regular</item>
+    </style>
+
+    <style name="MediumText">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/mine_shaft</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/cc_montserrat_medium</item>
+    </style>
+
+    <style name="SMediaBox.LightToolbar.NoTitle" parent="SMediaBox">
+        <item name="android:textColorSecondary">@color/colorWhite</item>
+        <item name="title">""</item>
+    </style>
+
+    <style name="SMediaBox.Transparent.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:windowTranslucentNavigation">true</item>
+
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="SMediaBox.SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>]
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="SMediaBox.Transparent.NoActionBar.Dark" parent="SMediaBox.Transparent.NoActionBar">
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+
+    <style name="SMediaBox.SlidingActivity" parent="SMediaBox.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+
+    </style>
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <item name="android:textColor">@color/mine_shaft</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/cc_montserrat_regular</item>
+    </style>
+
+    <style name="SMediaBox.TabTextStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/cc_montserrat_bold</item>
+    </style>
+
+    <style name="SMediaBox.DefaultTextStyle">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="SMediaBox.DefaultTextStyle.Dark" parent="SMediaBox.DefaultTextStyle">
+        <item name="android:textColor">@color/mine_shaft</item>
+    </style>
+
+    <!--    Base card style-->
+
+    <style name="BaseCardStyle">
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <style name="BaseClickableCard" parent="BaseCardStyle">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+    <!--    Movie details page & tv details page-->
+    <style name="Details" parent="SMediaBox.DefaultTextStyle.Dark" />
+
+    <style name="Details.Header" parent="Details">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/cc_montserrat_black</item>
+    </style>
+
+    <style name="Details.InfoTextLight">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/mine_shaft_alpha_66</item>
+        <item name="android:fontFamily">@font/cc_montserrat_regular</item>
+    </style>
+
+    <style name="Details.InfoTextBold" parent="Details">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Details.HorizontalDimens">
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+    <style name="Details.HeaderDimens" parent="Details.HorizontalDimens">
+        <item name="android:layout_marginTop">24dp</item>
+    </style>
+
+    <!--    Details page-->
+
+    <!--    Facts block-->
+    <style name="Details.FactsStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginEnd">16dp</item>
+    </style>
+
+    <style name="Widget.SMediaBox.BottomSheet" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item> <!-- This is important -->
+        <item name="android:statusBarColor">@color/transparent
+        </item> <!-- And then this will be needed -->
+        <item name="android:navigationBarColor">@color/colorWhite</item>
+        <item name="android:colorBackground">@color/colorWhite</item>
+    </style>
+
+    <style name="SMediaBox.DialogFragmentTransparentStyle">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowAnimationStyle">@style/DialogFragmentAnimationSlideUpDown</item>
+    </style>
+
+    <style name="DialogFragmentAnimationSlideUpDown" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/fragment_enter_slide_up</item>
+        <item name="android:windowExitAnimation">@anim/fragment_exit_slide_down</item>
+    </style>
+
+    <!--    ShapeableImageView styles-->
+
+    <style name="SMediaBox.ImageViewWithCorners_8">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+</resources>
