@@ -5,6 +5,7 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowFullscreen">true</item>
+
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.Light" />
@@ -22,7 +23,6 @@
 
     <style name="SMediaBox.login" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/mine_shaft</item>
-        @color/design_default_color_primary
     </style>
 
     <style name="SMediaBox.NoActionBar.Dark">
