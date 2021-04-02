@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "651824507538",
+    "firebase_url": "https://smediabox-ae285-default-rtdb.firebaseio.com",
+    "project_id": "smediabox-ae285",
+    "storage_bucket": "smediabox-ae285.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651824507538:android:561f5828606b34f09e944b",
+        "android_client_info": {
+          "package_name": "ru.lnv.smediabox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651824507538-tpe45ufbu816a2us9jiv1m465mfl0e6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCATUw320QWrf9Zrdvv5mkbND4OTwvARv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651824507538-tpe45ufbu816a2us9jiv1m465mfl0e6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
