@@ -4,30 +4,35 @@ import android.animation.Animator
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenStarted
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import ru.lnv.smediabox.databinding.ActivitySplashBinding
-import ru.lnv.smediabox.extensions.*
+import ru.lnv.smediabox.extensions.LOGIN_STATUS
+import ru.lnv.smediabox.extensions.SP_NAME
+
 
 
 class Splash : AppCompatActivity() {
     private var _binding: ActivitySplashBinding? = null
     private val mBinding get() = _binding!!
-
-    lateinit var sharedPrefsSplash: SharedPreferences
+    private lateinit var Prefs: SharedPreferences
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-        sharedPrefsSplash = getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
+        Prefs = getSharedPreferences(SP_NAME, Context.MODE_PRIVATE)
         setAnimation()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun setAnimation() {
@@ -37,15 +42,13 @@ class Splash : AppCompatActivity() {
             override fun onAnimationEnd(animation: Animator?) {
                 lifecycleScope.launch {
                     whenStarted {
-                        if (sharedPrefsSplash.getBoolean(LOGIN_STATUS, false)) {
+                        if (LoggedStatus()) {
                             delay(300)
-                            Toast.makeText(mBinding.root.context, "login true", Toast.LENGTH_SHORT).show()
-                            startMainActivity(true)
+                            overridePendingTransition(R.anim.slide_in_up, R.anim.slide_out_up)
                         } else {
-                            Toast.makeText(mBinding.root.context, "login no !!!!!!!!!! ", Toast.LENGTH_SHORT).show()
                             overridePendingTransition(0, 0)
-                            startMainActivity()
                         }
+                        startMainActivity()
                     }
                 }
             }
@@ -56,24 +59,11 @@ class Splash : AppCompatActivity() {
         })
     }
 
-//    private fun startMainActivity() {
-//        Toast.makeText(this, "OK dashboard ", Toast.LENGTH_SHORT).show()
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivityWithAnim(intent)
-//        finish()
-//    }
+    private fun LoggedStatus(): Boolean = Prefs.getBoolean(LOGIN_STATUS, false)
 
-    private fun startMainActivity(anim:Boolean = false) {
-
-
+    private fun startMainActivity() {
+        finish()
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        if (anim) {
-            (this as? AppCompatActivity)?.overridePendingTransition(
-                R.anim.slide_in_up,
-                R.anim.slide_out_up
-            )
-        }
-        finish()
     }
 }

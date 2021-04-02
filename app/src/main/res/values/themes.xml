@@ -4,7 +4,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowFullscreen">true</item>
+
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.Light" />
@@ -17,6 +18,11 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="SMediaBox.login" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimaryDark">@color/mine_shaft</item>
     </style>
 
     <style name="SMediaBox.NoActionBar.Dark">
