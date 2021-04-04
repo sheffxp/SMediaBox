@@ -55,6 +55,13 @@
         <action
             android:id="@+id/action_profileFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+            app:enterAnim="@anim/fragment_enter_slide_up"
+            app:exitAnim="@anim/fade_none"
+            app:popEnterAnim="@anim/fade_none"
+            app:popExitAnim="@anim/fragment_exit_slide_down" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -69,5 +76,14 @@
         <action
             android:id="@+id/action_searchFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="ru.lnv.smediabox.screen.settings.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_exit_out_up" />
     </fragment>
 </navigation>

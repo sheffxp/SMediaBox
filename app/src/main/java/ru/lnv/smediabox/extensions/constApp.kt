@@ -1,10 +1,12 @@
 package ru.lnv.smediabox.extensions
 import android.content.SharedPreferences
+import android.view.View
 import ru.lnv.smediabox.MainActivity
 import ru.lnv.smediabox.database.DatabaseRepository
 
 
 lateinit var APP_ACTIVITY: MainActivity
+lateinit var FRAGMENT: View
 lateinit var REPOSITORY:DatabaseRepository
 const val TYPE_DATABASE = "type_database"
 const val LOGIN_STATUS = "login_status"

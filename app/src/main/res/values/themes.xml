@@ -6,6 +6,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowFullscreen">true</item>
 
+
     </style>
 
     <style name="ToolbarTheme" parent="ThemeOverlay.MaterialComponents.Light" />
@@ -18,11 +19,16 @@
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
     </style>
+
 
 
     <style name="SMediaBox.login" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimaryDark">@color/mine_shaft</item>
+        <item name="android:statusBarColor">@color/colorYellow</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="windowActionBar">true</item>
     </style>
 
     <style name="SMediaBox.NoActionBar.Dark">
@@ -229,5 +235,6 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
+
 
 </resources>

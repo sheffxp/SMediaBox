@@ -7,13 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import ru.lnv.smediabox.R
 import ru.lnv.smediabox.databinding.FragmentLoginBinding
 import ru.lnv.smediabox.extensions.*
 
-class LoginFragment : Fragment(R.layout.fragment_login) {
+class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
@@ -51,6 +52,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     val prefEditor: SharedPreferences.Editor = SHAREDPREF.edit()
                     prefEditor.putBoolean(LOGIN_STATUS, true )
                     prefEditor.apply()
+                    APP_ACTIVITY.mBinding.navView.isVisible = true
                    APP_ACTIVITY.mVavController.navigate(R.id.action_loginFragment_to_movieFragment)
                 }
             }else{
