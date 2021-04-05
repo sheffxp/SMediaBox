@@ -5,10 +5,7 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Point
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.MotionEvent
-import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.navigation.NavController
@@ -29,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     private var isSliding = false
     private val threshold = 10
     private lateinit var screenSize: Point
-
+    var canSlideDown:Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,12 +68,13 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        FRAGMENT = mBinding.root
+
         screenSize = Point().apply { windowManager.defaultDisplay.getSize(this) }
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         var handled = false
+
 
         when (ev.action) {
             MotionEvent.ACTION_DOWN -> {
@@ -87,12 +85,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             MotionEvent.ACTION_MOVE -> {
-
-//                // нужно определить, является ли текущий жест "смахиванием вниз"
-
+                // нужно определить, является ли текущий жест "смахиванием вниз"
                 println("------------------------      isSlidingDown        ------------------------" + isSlidingDown(startX, startY, ev).toString())
 
-               if ((isSlidingDown(startX, startY, ev) && canSlideDown()) || isSliding) {
+
+               if ((isSlidingDown(startX, startY, ev) && canSlideDown) || isSliding) {
 
                     if (!isSliding) {
 //                        // момент, когда мы определили, что пользователь "смахивает" экран
@@ -111,25 +108,25 @@ class MainActivity : AppCompatActivity() {
 //                    // но не выше, чем точка старта
                    FRAGMENT.y = (ev.y - startY).coerceAtLeast(0f)
 //
-//                    handled = true
+                    handled = true
                 }
             }
 
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-//                if (isSliding) {
+                if (isSliding) {
 //                    // если пользователь пытался "смахнуть" экран...
-//                    isSliding = false
+                    isSliding = false
 //                    onSlidingFinished()
-//                    handled = true
-//                    if (shouldClose(ev.y - startY)) {
+                    handled = true
+                    if (shouldClose(ev.y - startY)) {
 //                        // закрыть экран
-//                        println("=====================         closeDownAndDismiss            =========================================")
-//                        closeDownAndDismiss()
-//                    } else {
+                        println("=====================         closeDownAndDismiss            =========================================")
+                        closeDownAndDismiss()
+                    } else {
 //                        // вернуть все как было
-//                        FRAGMENT.y = 0f
-//                    }
-//                }
+                        FRAGMENT.y = 0f
+                    }
+                }
                 startX = 0f
                 startY = 0f
             }
@@ -158,12 +155,15 @@ class MainActivity : AppCompatActivity() {
             override fun onAnimationRepeat(animation: Animator) {}
 
             override fun onAnimationEnd(animation: Animator) {
-                finish()
+                canSlideDown = false
+                //mVavController.navigate(R.id.action_settingsFragment_to_profileFragment)
             }
 
             override fun onAnimationCancel(animation: Animator) {}
 
-            override fun onAnimationStart(animation: Animator) {}
+            override fun onAnimationStart(animation: Animator) {
+                mVavController.navigate(R.id.action_settingsFragment_to_profileFragment)
+            }
         })
         positionAnimator.start()
     }
@@ -175,7 +175,5 @@ class MainActivity : AppCompatActivity() {
         return deltaY > threshold
     }
 
-    fun canSlideDown(): Boolean{
-        return false
-    }
+
 }

@@ -17,44 +17,15 @@
     <fragment
         android:id="@+id/movieFragment"
         android:name="ru.lnv.smediabox.screen.main_page_movies.MovieFragment"
-        android:label="MovieFragment" >
-        <action
-            android:id="@+id/action_movieFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_movieFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_movieFragment_to_TVsFragment"
-            app:destination="@id/TVsFragment" />
-    </fragment>
+        android:label="MovieFragment" />
     <fragment
         android:id="@+id/TVsFragment"
         android:name="ru.lnv.smediabox.screen.main_page_tvs.TVsFragment"
-        android:label="TVsFragment" >
-        <action
-            android:id="@+id/action_TVsFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_TVsFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_TVsFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
-    </fragment>
+        android:label="TVsFragment" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="ru.lnv.smediabox.screen.main_page_profile.ProfileFragment"
         android:label="ProfileFragment" >
-        <action
-            android:id="@+id/action_profileFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_TVsFragment"
-            app:destination="@id/TVsFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
         <action
             android:id="@+id/action_profileFragment_to_settingsFragment"
             app:destination="@id/settingsFragment"
@@ -66,17 +37,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="ru.lnv.smediabox.screen.main_page_search.SearchFragment"
-        android:label="SearchFragment" >
-        <action
-            android:id="@+id/action_searchFragment_to_TVsFragment"
-            app:destination="@id/TVsFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-    </fragment>
+        android:label="SearchFragment" />
     <fragment
         android:id="@+id/settingsFragment"
         android:name="ru.lnv.smediabox.screen.settings.SettingsFragment"
@@ -84,6 +45,12 @@
         <action
             android:id="@+id/action_settingsFragment_to_profileFragment"
             app:destination="@id/profileFragment"
-            app:enterAnim="@anim/slide_exit_out_up" />
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fade_none"
+            app:popEnterAnim="@anim/fade_none" />
     </fragment>
+    <dialog
+        android:id="@+id/logoutDialog"
+        android:name="ru.lnv.smediabox.screen.dialogs.LogoutDialog"
+        android:label="LogoutDialog" />
 </navigation>
