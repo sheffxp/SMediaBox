@@ -2,7 +2,7 @@ package ru.lnv.smediabox.extensions
 import android.content.SharedPreferences
 import android.view.View
 import ru.lnv.smediabox.MainActivity
-import ru.lnv.smediabox.database.DatabaseRepository
+import ru.lnv.smediabox.data.database.DatabaseRepository
 
 
 lateinit var APP_ACTIVITY: MainActivity

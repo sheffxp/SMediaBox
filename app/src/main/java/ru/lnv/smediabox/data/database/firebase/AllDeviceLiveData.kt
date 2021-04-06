@@ -1,4 +1,4 @@
-package ru.lnv.smediabox.database.firebase
+package ru.lnv.smediabox.data.database.firebase
 
 import androidx.lifecycle.LiveData
 import com.google.firebase.auth.FirebaseAuth

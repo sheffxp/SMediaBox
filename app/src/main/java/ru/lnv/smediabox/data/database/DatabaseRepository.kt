@@ -1,4 +1,4 @@
-package ru.lnv.smediabox.database
+package ru.lnv.smediabox.data.database
 
 import androidx.lifecycle.LiveData
 import ru.lnv.smediabox.models.AppDevice

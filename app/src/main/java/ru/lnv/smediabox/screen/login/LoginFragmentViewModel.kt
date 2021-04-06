@@ -3,7 +3,7 @@ package ru.lnv.smediabox.screen.login
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
-import ru.lnv.smediabox.database.firebase.AppFirebaseRepository
+import ru.lnv.smediabox.data.database.firebase.AppFirebaseRepository
 import ru.lnv.smediabox.extensions.APP_ACTIVITY
 import ru.lnv.smediabox.extensions.REPOSITORY
 import ru.lnv.smediabox.extensions.TYPE_FIREBASE

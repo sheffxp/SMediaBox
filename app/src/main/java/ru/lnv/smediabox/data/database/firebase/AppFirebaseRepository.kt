@@ -1,8 +1,8 @@
-package ru.lnv.smediabox.database.firebase
+package ru.lnv.smediabox.data.database.firebase
 
 import androidx.lifecycle.LiveData
 import com.google.firebase.auth.FirebaseAuth
-import ru.lnv.smediabox.database.DatabaseRepository
+import ru.lnv.smediabox.data.database.DatabaseRepository
 import ru.lnv.smediabox.extensions.EMAIL
 import ru.lnv.smediabox.extensions.PASSWORD
 import ru.lnv.smediabox.models.AppDevice
