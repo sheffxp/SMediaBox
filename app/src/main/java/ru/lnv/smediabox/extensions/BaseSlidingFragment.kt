@@ -100,6 +100,7 @@ open class BaseSlidingFragment:Fragment() {
 
             override fun onAnimationEnd(animation: Animator) {
                 fragmentManager?.popBackStack()
+
             }
 
             override fun onAnimationCancel(animation: Animator) {}
