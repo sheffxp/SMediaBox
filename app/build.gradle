@@ -82,4 +82,6 @@ dependencies {
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:1.0.0-alpha09"
 
+    //Moshi
+    implementation "com.squareup.moshi:moshi:1.11.0"
 }
