@@ -87,4 +87,9 @@ dependencies {
 
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    implementation 'androidx.paging:paging-runtime-ktx:3.0.0-beta03'
+
+    implementation 'io.coil-kt:coil:0.13.0'
+
 }

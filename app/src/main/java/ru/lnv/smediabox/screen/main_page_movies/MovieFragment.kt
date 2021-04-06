@@ -12,15 +12,35 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.flow.collectLatest
 import ru.lnv.smediabox.R
 import ru.lnv.smediabox.databinding.FragmentMovieBinding
 import ru.lnv.smediabox.extensions.APP_ACTIVITY
+import ru.lnv.smediabox.extensions.px
+import ru.lnv.smediabox.extensions.setShowSideItems
+import ru.lnv.smediabox.screen.main_page_movies.adapters.MovieCardAdapter
 
 class MovieFragment : Fragment() {
     private var _mbinding:FragmentMovieBinding? = null
     private val mBinding get() = _mbinding!!
     private lateinit var mViewModel: MovieViewModel
 
+    /**
+     * Adapters
+     */
+
+//    private val nowPlayingMoviesAdapter = MovieCollectionAdapter(::actionClickMovie)
+//    private val upcomingMoviesAdapter = MovieDateCardAdapter(::actionClickMovie)
+    private val popularMoviesAdapter = MovieCardAdapter(::actionClickMovie)
+//    private val trendingMovieAdapter = MovieTrendAdapter(::actionClickMovie)
+//
+//    private val genresAdapter = GenreAdapter()
+//    private val trailersAdapter = TrailersAdapter()
+//    private val peopleAdapter = PersonAdapter()
+
+    /**
+     * Default methods
+     */
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +64,11 @@ class MovieFragment : Fragment() {
         mViewModel  = ViewModelProvider(this).get(MovieViewModel::class.java)
 
         initAdapters()
+        setObservers()
         setClickListeners()
     }
+
+
 
     private fun setClickListeners() {
         mBinding.btnSearch.setOnClickListener {
@@ -96,7 +119,24 @@ class MovieFragment : Fragment() {
 
     private fun initAdapters() {
         lifecycleScope.launchWhenCreated {
-
+            mBinding.vpPopularMovies.setShowSideItems(16.px(), 16.px())
+            mBinding.vpPopularMovies.adapter = popularMoviesAdapter
         }
+    }
+
+    private fun setObservers() {
+        lifecycleScope.launchWhenResumed {
+            mViewModel.popularMoviesFlow.collectLatest { pagingData ->
+                popularMoviesAdapter.submitData(pagingData)
+            }
+        }
+    }
+
+    /**
+     * Actions
+     */
+
+    private fun actionClickMovie(id: Int) {
+      //  findNavController().navigate(Directions.actionToMovieDetails(id))
     }
 }
