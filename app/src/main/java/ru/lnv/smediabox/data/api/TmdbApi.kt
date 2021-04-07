@@ -7,7 +7,7 @@ import retrofit2.http.Query
 import ru.lnv.smediabox.models.genre.GenreResponse
 import ru.lnv.smediabox.models.movie.GetMoviesResponse
 
-interface Api {
+interface TmdbApi {
     //популярные
     @GET("movie/popular")
     fun getPopularMovies(
