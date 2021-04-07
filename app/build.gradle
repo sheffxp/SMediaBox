@@ -52,9 +52,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-auth:20.0.3'
     implementation 'com.google.firebase:firebase-database:19.7.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
 
     implementation 'com.airbnb.android:lottie:3.6.1'
 
@@ -85,11 +83,33 @@ dependencies {
     //Moshi
     implementation "com.squareup.moshi:moshi:1.11.0"
 
-    //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
     implementation 'androidx.paging:paging-runtime-ktx:3.0.0-beta03'
 
     implementation 'io.coil-kt:coil:0.13.0'
 
+
+    // Support
+    // https://developer.android.com/jetpack/androidx/versions
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+
+    // Retrofit
+    // https://github.com/square/retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+
+    // Glide
+    // https://github.com/bumptech/glide
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //Klock
+    implementation "com.soywiz.korlibs.klock:klock:2.0.7"
 }

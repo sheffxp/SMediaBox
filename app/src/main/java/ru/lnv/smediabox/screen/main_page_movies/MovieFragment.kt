@@ -1,42 +1,43 @@
 package ru.lnv.smediabox.screen.main_page_movies
 
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.core.util.isEmpty
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import kotlinx.coroutines.flow.collectLatest
-import ru.lnv.smediabox.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import ru.lnv.smediabox.data.repositories.MoviesRepository
 import ru.lnv.smediabox.databinding.FragmentMovieBinding
 import ru.lnv.smediabox.extensions.APP_ACTIVITY
-import ru.lnv.smediabox.extensions.px
-import ru.lnv.smediabox.extensions.setShowSideItems
-import ru.lnv.smediabox.screen.main_page_movies.adapters.MovieCardAdapter
+import ru.lnv.smediabox.models.genre.Genre
+import ru.lnv.smediabox.models.movie.Movie
+import ru.lnv.smediabox.objects.GenresStorageObject
+import ru.lnv.smediabox.screen.main_page_movies.adapters.MoviesPopularAdapter
+import ru.lnv.smediabox.screen.main_page_movies.adapters.MoviesTopRatedAdapter
 
 class MovieFragment : Fragment() {
     private var _mbinding:FragmentMovieBinding? = null
     private val mBinding get() = _mbinding!!
     private lateinit var mViewModel: MovieViewModel
 
+    //private lateinit var popularMovies: RecyclerView
+
+    private lateinit var popularMoviesPopularAdapter: MoviesPopularAdapter
+    private lateinit var topratedMoviesTopRatedAdapter: MoviesTopRatedAdapter
+
+    private lateinit var popularMoviesLayoutMgr: LinearLayoutManager
+
+    private var popularMoviesPage = 1
+
+    private var topRatedMoviesPage = 1
+
     /**
      * Adapters
      */
-
-//    private val nowPlayingMoviesAdapter = MovieCollectionAdapter(::actionClickMovie)
-//    private val upcomingMoviesAdapter = MovieDateCardAdapter(::actionClickMovie)
-    private val popularMoviesAdapter = MovieCardAdapter(::actionClickMovie)
-//    private val trendingMovieAdapter = MovieTrendAdapter(::actionClickMovie)
-//
-//    private val genresAdapter = GenreAdapter()
-//    private val trailersAdapter = TrailersAdapter()
-//    private val peopleAdapter = PersonAdapter()
 
     /**
      * Default methods
@@ -58,15 +59,127 @@ class MovieFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         initialization()
+
+//        popularMovies = APP_ACTIVITY.findViewById(R.id.rv_now_playing_movies)
+//        popularMoviesLayoutMgr = LinearLayoutManager(
+//            APP_ACTIVITY,
+//            LinearLayoutManager.HORIZONTAL,
+//            false
+//        )
+
+        //popularMovies.layoutManager = popularMoviesLayoutMgr
+
+
+        //popularMovies.adapter = popularMoviesPopularAdapter
+
+
+
+
+    }
+
+
+
+    private fun attachPopularMoviesOnScrollListener() {
+
+
+//        popularMovies.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                val totalItemCount = popularMoviesLayoutMgr.itemCount
+//                val visibleItemCount = popularMoviesLayoutMgr.childCount
+//                val firstVisibleItem = popularMoviesLayoutMgr.findFirstVisibleItemPosition()
+//                if (firstVisibleItem + visibleItemCount >= totalItemCount / 2) {
+//                    popularMovies.removeOnScrollListener(this)
+                    popularMoviesPage++
+                    getPopularMovies()
+//                }
+//            }
+//        })
+    }
+
+    private fun attachTopratedMoviesOnScrollListener() {
+        topRatedMoviesPage++
+        getTopratedMovies()
+    }
+
+    private fun onPopularMoviesFetched(movies: List<Movie>) {
+        popularMoviesPopularAdapter.appendMovies(movies)
+        attachPopularMoviesOnScrollListener()
+    }
+
+    private fun onTopratedMoviesFetched(movies: List<Movie>) {
+        topratedMoviesTopRatedAdapter.appendMovies(movies)
+        attachTopratedMoviesOnScrollListener()
+
+    }
+
+    private fun onError() {
+        Toast.makeText(APP_ACTIVITY, "error movie popular", Toast.LENGTH_SHORT).show()
     }
 
     private fun initialization() {
         mViewModel  = ViewModelProvider(this).get(MovieViewModel::class.java)
 
         initAdapters()
-        setObservers()
+
+        getPopularMovies()
+        getTopratedMovies()
+
+        getMovieGenres()
+        //setMovieGenres()
         setClickListeners()
     }
+
+    private fun initAdapters() {
+        lifecycleScope.launchWhenCreated {
+            popularMoviesPopularAdapter = MoviesPopularAdapter(mutableListOf())
+            mBinding.vpPopularMovies.adapter = popularMoviesPopularAdapter
+        }
+
+        lifecycleScope.launchWhenCreated {
+            topratedMoviesTopRatedAdapter = MoviesTopRatedAdapter(mutableListOf())
+            mBinding.vpTrendMovies.adapter = topratedMoviesTopRatedAdapter
+        }
+
+    }
+
+    private fun getPopularMovies(){
+        MoviesRepository.getPopularMovies(
+            popularMoviesPage,
+            ::onPopularMoviesFetched,
+            ::onError
+        )
+    }
+
+    private fun getTopratedMovies(){
+        MoviesRepository.getTopRatedMovies(
+            topRatedMoviesPage,
+            ::onTopratedMoviesFetched,
+            ::onError
+        )
+    }
+
+    private  fun getMovieGenres(){
+       MoviesRepository.getMovieGenres(
+                ::setMovieGenres,
+                ::onError
+       )
+    }
+
+
+
+
+
+    private fun setMovieGenres(genres: List<Genre>) {
+        if (GenresStorageObject.movieGenres.isEmpty()) {
+            genres.map { genre ->
+                GenresStorageObject.movieGenres.put(
+                    genre.id,
+                    genre.name
+                )
+            }
+        }
+    }
+
 
 
 
@@ -91,9 +204,6 @@ class MovieFragment : Fragment() {
             Toast.makeText(APP_ACTIVITY, "btnTrendingMovies", Toast.LENGTH_SHORT).show()
         }
 
-        mBinding.btnMovieGenres.setOnClickListener {
-            Toast.makeText(APP_ACTIVITY, "btnMovieGenres", Toast.LENGTH_SHORT).show()
-        }
 
         mBinding.btnMovieTrailers.setOnClickListener {
             Toast.makeText(APP_ACTIVITY, "btnMovieTrailers", Toast.LENGTH_SHORT).show()
@@ -104,39 +214,4 @@ class MovieFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        APP_ACTIVITY.window.navigationBarColor = ContextCompat.getColor(APP_ACTIVITY, R.color.mine_shaft)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            APP_ACTIVITY.window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-        }
-
-
-     }
-
-
-    private fun initAdapters() {
-        lifecycleScope.launchWhenCreated {
-            mBinding.vpPopularMovies.setShowSideItems(16.px(), 16.px())
-            mBinding.vpPopularMovies.adapter = popularMoviesAdapter
-        }
-    }
-
-    private fun setObservers() {
-        lifecycleScope.launchWhenResumed {
-            mViewModel.popularMoviesFlow.collectLatest { pagingData ->
-                popularMoviesAdapter.submitData(pagingData)
-            }
-        }
-    }
-
-    /**
-     * Actions
-     */
-
-    private fun actionClickMovie(id: Int) {
-      //  findNavController().navigate(Directions.actionToMovieDetails(id))
-    }
 }
